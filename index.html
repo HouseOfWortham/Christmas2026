@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#153c35">
+    <meta name="description" content="A little home for the family Christmas plans, wish lists, and sail-away countdown.">
+    <title>Christmas, together — Holiday Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#home" aria-label="Christmas, together home">
+        <span class="wordmark-icon" aria-hidden="true">✳</span>
+        <span>Christmas<span class="wordmark-light">, together</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#registry">Gift registry</a>
+        <a href="#cruise">Cruise plans</a>
+        <a href="#at-home">At home</a>
+      </nav>
+      <a class="nav-cta" href="#registry">Make a wish <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-star" aria-hidden="true">✳</span> THE FAMILY HOLIDAY HUB</p>
+          <h1>More merry.<br><em>Less</em> last-minute.</h1>
+          <p class="hero-intro">All the little things that make our Christmas feel like ours, in one happy place.</p>
+          <div class="hero-links">
+            <a class="button button-gold" href="#registry">Explore the wish list <span aria-hidden="true">→</span></a>
+            <a class="text-link" href="#cruise">See what’s planned <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="hero-note"><span aria-hidden="true">✦</span> Made for making memories together</div>
+        </div>
+        <div class="hero-art" aria-label="A cozy illustrated Christmas tree and wrapped gifts">
+          <div class="art-sun"></div>
+          <div class="art-snow snow-one">✳</div>
+          <div class="art-snow snow-two">·</div>
+          <div class="art-snow snow-three">✳</div>
+          <div class="art-label">THE MOST<br><span>WONDERFUL</span><br>TIME OF YEAR</div>
+          <div class="tree-star">✦</div>
+          <div class="tree tree-back"></div>
+          <div class="tree tree-mid"></div>
+          <div class="tree tree-front"></div>
+          <div class="tree-trunk"></div>
+          <div class="tree-ornament ornament-one"></div>
+          <div class="tree-ornament ornament-two"></div>
+          <div class="tree-ornament ornament-three"></div>
+          <div class="present present-one"><span></span></div>
+          <div class="present present-two"><span></span></div>
+          <div class="art-caption"><span class="caption-line"></span> DECEMBER IS BETTER TOGETHER</div>
+        </div>
+      </section>
+
+      <section class="countdown-section" aria-labelledby="countdown-heading">
+        <div class="section-heading countdown-heading">
+          <div>
+            <p class="eyebrow">THE BIG DAYS ARE GETTING CLOSER</p>
+            <h2 id="countdown-heading">A little something to look forward to.</h2>
+          </div>
+          <span class="heading-sparkle" aria-hidden="true">✳</span>
+        </div>
+        <div class="countdown-grid">
+          <article class="countdown-card christmas-card">
+            <div class="countdown-icon" aria-hidden="true">✳</div>
+            <div class="countdown-title-row"><h3>Christmas Day</h3><span class="date-tag" id="christmas-date"></span></div>
+            <p class="countdown-subtitle">The magic is on its way.</p>
+            <div class="timer" id="christmas-countdown" aria-live="polite"></div>
+          </article>
+          <article class="countdown-card cruise-card">
+            <div class="countdown-icon" aria-hidden="true">⌁</div>
+            <div class="countdown-title-row"><h3>Our cruise</h3><label class="date-label" for="cruise-date">DEPARTURE</label></div>
+            <div class="cruise-date-row">
+              <p class="countdown-subtitle" id="cruise-countdown"></p>
+              <input id="cruise-date" type="date" aria-label="Set the cruise departure date">
+            </div>
+            <div class="timer" id="cruise-timer" aria-live="polite"></div>
+          </article>
+        </div>
+        <p class="local-note"><span aria-hidden="true">◉</span> Your plans are saved on this device. They aren’t shared with other visitors.</p>
+      </section>
+
+      <section class="registry-section content-section" id="registry" aria-labelledby="registry-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">A LITTLE HOLIDAY INSPIRATION</p>
+            <h2 id="registry-heading">The wish list</h2>
+            <p class="section-intro">Good ideas, thoughtful surprises, and absolutely no guesswork.</p>
+          </div>
+          <span class="section-number">01 <span>/ 03</span></span>
+        </div>
+        <div class="registry-layout">
+          <form class="form-card" id="wish-form">
+            <div class="form-heading"><span class="form-icon" aria-hidden="true">✳</span><div><h3>Add a wish</h3><p>Leave a hint for your secret admirer.</p></div></div>
+            <label for="wish-name">Who’s wishing?</label>
+            <input id="wish-name" name="name" autocomplete="name" maxlength="60" placeholder="Your name" required>
+            <label for="wish-title">What’s on your list?</label>
+            <input id="wish-title" name="title" maxlength="100" placeholder="A book, a cozy sweater..." required>
+            <label for="wish-link">Store link <span class="optional">OPTIONAL · AMAZON OR GIFTSTER</span></label>
+            <input id="wish-link" name="link" type="url" inputmode="url" placeholder="https://www.amazon.com/…">
+            <label for="wish-notes">Notes, size, or color <span class="optional">OPTIONAL</span></label>
+            <input id="wish-notes" name="notes" maxlength="160" placeholder="Size medium, forest green">
+            <label class="check-row"><input id="wish-handled" name="handled" type="checkbox"><span class="check-box" aria-hidden="true"></span><span>Already claimed or bought <small>Keep this gift off the wish list</small></span></label>
+            <button class="button button-green form-submit" type="submit">Add to the list <span aria-hidden="true">↗</span></button>
+            <p class="form-message" id="wish-message" role="status"></p>
+          </form>
+          <div class="wish-list-column">
+            <div class="list-toolbar">
+              <div><h3>Family wishes</h3><span class="list-count" id="wish-count"></span></div>
+              <label class="reveal-toggle"><input id="show-handled" type="checkbox"><span class="toggle-track"></span> Show handled</label>
+            </div>
+            <div class="wish-list" id="wish-list" aria-live="polite"></div>
+            <p class="privacy-hint"><span aria-hidden="true">✦</span> Handled gifts stay tucked away unless you choose to reveal them.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="cruise-section content-section" id="cruise" aria-labelledby="cruise-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">ALL ABOARD FOR ADVENTURE</p>
+            <h2 id="cruise-heading">The cruise</h2>
+            <p class="section-intro">A few ideas for our days at sea. Set the date above, then let the fun begin.</p>
+          </div>
+          <span class="section-number">02 <span>/ 03</span></span>
+        </div>
+        <div class="cruise-layout">
+          <div class="itinerary">
+            <article class="itinerary-day">
+              <div class="day-marker"><span>DAY</span><strong>01</strong></div>
+              <div class="day-content"><span class="day-type">SAIL AWAY</span><h3>Let the holiday begin</h3><p>Find our cabins, explore the ship, and meet on deck for the sail-away view.</p><span class="day-time">AFTERNOON · TOP DECK</span></div>
+              <span class="day-symbol" aria-hidden="true">⌁</span>
+            </article>
+            <article class="itinerary-day">
+              <div class="day-marker"><span>DAY</span><strong>02</strong></div>
+              <div class="day-content"><span class="day-type">AT SEA</span><h3>A slow, sunny sea day</h3><p>Pool time, a long lunch, and a little friendly competition at family game hour.</p><span class="day-time">11:00 AM · FAMILY LOUNGE</span></div>
+              <span class="day-symbol" aria-hidden="true">☼</span>
+            </article>
+            <article class="itinerary-day">
+              <div class="day-marker"><span>DAY</span><strong>03</strong></div>
+              <div class="day-content"><span class="day-type">SHORE DAY</span><h3>Make a day of it</h3><p>Pick a shore adventure together, then meet back on board to swap stories.</p><span class="day-time">MORNING · SHORE EXCURSION</span></div>
+              <span class="day-symbol" aria-hidden="true">✳</span>
+            </article>
+            <article class="itinerary-day">
+              <div class="day-marker"><span>DAY</span><strong>04</strong></div>
+              <div class="day-content"><span class="day-type">FAMILY NIGHT</span><h3>One table, all of us</h3><p>Dress up a little for a festive dinner, then catch the evening show.</p><span class="day-time">6:30 PM · MAIN DINING ROOM</span></div>
+              <span class="day-symbol" aria-hidden="true">✦</span>
+            </article>
+          </div>
+          <form class="form-card rsvp-card" id="rsvp-form">
+            <div class="form-heading"><span class="form-icon form-icon-blue" aria-hidden="true">↗</span><div><h3>Count me in</h3><p>Let us know what you’d like to join.</p></div></div>
+            <label for="rsvp-name">Your name</label>
+            <input id="rsvp-name" name="name" autocomplete="name" maxlength="60" placeholder="Your name" required>
+            <label for="rsvp-event">Choose an activity</label>
+            <select id="rsvp-event" name="event" required>
+              <option value="">Pick an activity</option>
+              <option>Shore excursion</option>
+              <option>Family game hour</option>
+              <option>Family dinner</option>
+              <option>Sail-away meetup</option>
+            </select>
+            <button class="button button-green form-submit" type="submit">Add my name <span aria-hidden="true">↗</span></button>
+            <p class="form-message" id="rsvp-message" role="status"></p>
+            <div class="signup-list-wrap"><h4>Who’s joining?</h4><div id="rsvp-list" class="signup-list"></div></div>
+            <p class="tiny-note">These plans are just for our family. Check cruise details before booking excursions.</p>
+          </form>
+        </div>
+      </section>
+
+      <section class="home-section content-section" id="at-home" aria-labelledby="home-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">GOOD THINGS HAPPEN AT HOME, TOO</p>
+            <h2 id="home-heading">The home stretch</h2>
+            <p class="section-intro">The cozy traditions, shared meals, and little moments around the big day.</p>
+          </div>
+          <span class="section-number">03 <span>/ 03</span></span>
+        </div>
+        <div class="home-grid">
+          <article class="home-schedule">
+            <div class="home-card-heading"><div><span class="eyebrow">SAVE THE MOMENT</span><h3>Our home calendar</h3></div><span class="calendar-icon" aria-hidden="true">▦</span></div>
+            <div class="home-event"><div class="event-date"><span>DEC</span><strong>23</strong></div><div><span class="event-label">THE NIGHT BEFORE THE NIGHT BEFORE</span><h4>Cookie decorating & cocoa</h4><p>Aprons on, sprinkles everywhere. Come as you are.</p></div></div>
+            <div class="home-event"><div class="event-date event-date-red"><span>DEC</span><strong>24</strong></div><div><span class="event-label">CHRISTMAS EVE</span><h4>Our cozy Christmas Eve</h4><p>Snacks, stories, and one present before bed.</p></div></div>
+            <div class="home-event"><div class="event-date event-date-green"><span>DEC</span><strong>25</strong></div><div><span class="event-label">CHRISTMAS DAY</span><h4>Breakfast, then the big day</h4><p>Bring your appetite and your comfiest slippers.</p></div></div>
+            <div class="exchange-note"><span aria-hidden="true">✦</span><p><strong>Gift exchange:</strong> Bring one wrapped surprise for our family swap. Keep it around $25.</p></div>
+          </article>
+          <div class="potluck-column">
+            <form class="form-card potluck-form" id="potluck-form">
+              <div class="form-heading"><span class="form-icon form-icon-red" aria-hidden="true">♡</span><div><h3>Bring a little something</h3><p>Let’s make the table a family effort.</p></div></div>
+              <label for="potluck-name">Your name</label>
+              <input id="potluck-name" name="name" autocomplete="name" maxlength="60" placeholder="Your name" required>
+              <label for="potluck-dish">What are you bringing?</label>
+              <input id="potluck-dish" name="dish" maxlength="100" placeholder="Grandma’s apple pie..." required>
+              <label for="potluck-notes">Notes <span class="optional">OPTIONAL</span></label>
+              <input id="potluck-notes" name="notes" maxlength="120" placeholder="Serves 8, contains nuts">
+              <button class="button button-green form-submit" type="submit">Add to the menu <span aria-hidden="true">↗</span></button>
+              <p class="form-message" id="potluck-message" role="status"></p>
+            </form>
+            <div class="potluck-list-card"><div class="list-toolbar"><div><h3>On the menu</h3><span class="list-count" id="potluck-count"></span></div><span class="menu-sparkle" aria-hidden="true">✳</span></div><div id="potluck-list" class="potluck-list"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing-banner" aria-label="Holiday greeting">
+        <span class="closing-spark" aria-hidden="true">✳</span>
+        <p>Here’s to being <em>together.</em></p>
+        <span class="closing-subtitle">THE BEST PART OF THE HOLIDAYS IS US</span>
+        <span class="closing-spark closing-spark-right" aria-hidden="true">✦</span>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="wordmark footer-wordmark" href="#home"><span class="wordmark-icon" aria-hidden="true">✳</span><span>Christmas<span class="wordmark-light">, together</span></span></a>
+      <p>Made with love & a little holiday magic.</p>
+      <a class="back-top" href="#home">BACK TO TOP ↑</a>
+    </footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
