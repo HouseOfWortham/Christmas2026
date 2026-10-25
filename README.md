@@ -4,7 +4,7 @@ A responsive, static family holiday hub built with HTML, CSS, and vanilla JavaSc
 
 ## Run locally
 
-Open `index.html` in a browser, or serve the folder with any static web server. The site uses browser local storage for the cruise date, gift wishes, cruise sign-ups, and potluck entries.
+Open `index.html` in a browser, or serve the folder with any static web server. Home, Gift Registry, Cruise, and At home are separate hash-addressable pages. The gift registry has separate catalogs for Mom, Dad, Tritan, Athena, Paris, Taylor, Alton, Apollo, and Rachel. Choose a person to add wishes or browse their catalog; each wish can include an Amazon or Giftster link. Wishes are entered individually—the static site does not import or scrape list contents from those services. The site uses browser local storage for the cruise date, gift wishes, cruise sign-ups, and potluck entries.
 
 **Important:** local storage belongs to one browser on one device. It does not sync or share changes with other family members or site visitors. Gift links are limited to Amazon and Giftster. The example itinerary and home-calendar details can be edited directly in `index.html`.
 

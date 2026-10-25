@@ -27,7 +27,7 @@
     </header>
 
     <main>
-      <section class="hero" id="home">
+      <section class="hero" id="home" data-page="home">
         <div class="hero-copy">
           <p class="eyebrow"><span class="eyebrow-star" aria-hidden="true">✳</span> THE FAMILY HOLIDAY HUB</p>
           <h1>More merry.<br><em>Less</em> last-minute.</h1>
@@ -58,7 +58,7 @@
         </div>
       </section>
 
-      <section class="countdown-section" aria-labelledby="countdown-heading">
+      <section class="countdown-section" aria-labelledby="countdown-heading" data-page="home">
         <div class="section-heading countdown-heading">
           <div>
             <p class="eyebrow">THE BIG DAYS ARE GETTING CLOSER</p>
@@ -86,7 +86,7 @@
         <p class="local-note"><span aria-hidden="true">◉</span> Your plans are saved on this device. They aren’t shared with other visitors.</p>
       </section>
 
-      <section class="registry-section content-section" id="registry" aria-labelledby="registry-heading">
+      <section class="registry-section content-section" id="registry" aria-labelledby="registry-heading" data-page="registry">
         <div class="section-heading">
           <div>
             <p class="eyebrow">A LITTLE HOLIDAY INSPIRATION</p>
@@ -95,33 +95,45 @@
           </div>
           <span class="section-number">01 <span>/ 03</span></span>
         </div>
-        <div class="registry-layout">
-          <form class="form-card" id="wish-form">
-            <div class="form-heading"><span class="form-icon" aria-hidden="true">✳</span><div><h3>Add a wish</h3><p>Leave a hint for your secret admirer.</p></div></div>
-            <label for="wish-name">Who’s wishing?</label>
-            <input id="wish-name" name="name" autocomplete="name" maxlength="60" placeholder="Your name" required>
-            <label for="wish-title">What’s on your list?</label>
-            <input id="wish-title" name="title" maxlength="100" placeholder="A book, a cozy sweater..." required>
-            <label for="wish-link">Store link <span class="optional">OPTIONAL · AMAZON OR GIFTSTER</span></label>
-            <input id="wish-link" name="link" type="url" inputmode="url" placeholder="https://www.amazon.com/…">
-            <label for="wish-notes">Notes, size, or color <span class="optional">OPTIONAL</span></label>
-            <input id="wish-notes" name="notes" maxlength="160" placeholder="Size medium, forest green">
-            <label class="check-row"><input id="wish-handled" name="handled" type="checkbox"><span class="check-box" aria-hidden="true"></span><span>Already claimed or bought <small>Keep this gift off the wish list</small></span></label>
-            <button class="button button-green form-submit" type="submit">Add to the list <span aria-hidden="true">↗</span></button>
-            <p class="form-message" id="wish-message" role="status"></p>
-          </form>
-          <div class="wish-list-column">
-            <div class="list-toolbar">
-              <div><h3>Family wishes</h3><span class="list-count" id="wish-count"></span></div>
-              <label class="reveal-toggle"><input id="show-handled" type="checkbox"><span class="toggle-track"></span> Show handled</label>
+        <div class="registry-browser">
+          <div id="registry-members-view">
+            <div class="registry-members-intro">
+              <h3>Choose someone to see their list</h3>
+              <p>Each person has a separate catalog of gift ideas and store links.</p>
             </div>
-            <div class="wish-list" id="wish-list" aria-live="polite"></div>
-            <p class="privacy-hint"><span aria-hidden="true">✦</span> Handled gifts stay tucked away unless you choose to reveal them.</p>
+            <div class="registry-members" id="registry-members" aria-label="Family wish lists"></div>
+          </div>
+          <div id="registry-person-view" hidden>
+            <a class="registry-back" href="#registry">← All family wish lists</a>
+            <div class="registry-layout">
+              <form class="form-card" id="wish-form">
+                <div class="form-heading"><span class="form-icon" aria-hidden="true">✳</span><div><h3>Add a wish</h3><p>Add an idea and, if you have one, its store link.</p></div></div>
+                <label for="wish-name">Wish list for</label>
+                <input id="wish-name" name="name" readonly required>
+                <label for="wish-title">What’s on the list?</label>
+                <input id="wish-title" name="title" maxlength="100" placeholder="A book, a cozy sweater..." required>
+                <label for="wish-link">Amazon or Giftster link <span class="optional">OPTIONAL</span></label>
+                <input id="wish-link" name="link" type="url" inputmode="url" placeholder="https://www.amazon.com/…">
+                <label for="wish-notes">Notes, size, or color <span class="optional">OPTIONAL</span></label>
+                <input id="wish-notes" name="notes" maxlength="160" placeholder="Size medium, forest green">
+                <label class="check-row"><input id="wish-handled" name="handled" type="checkbox"><span class="check-box" aria-hidden="true"></span><span>Already claimed or bought <small>Keep this gift off the wish list</small></span></label>
+                <button class="button button-green form-submit" type="submit">Add to the list <span aria-hidden="true">↗</span></button>
+                <p class="form-message" id="wish-message" role="status"></p>
+              </form>
+              <div class="wish-list-column">
+                <div class="list-toolbar">
+                  <div><h3 id="wish-list-heading">Wishes</h3><span class="list-count" id="wish-count"></span></div>
+                  <label class="reveal-toggle"><input id="show-handled" type="checkbox"><span class="toggle-track"></span> Show handled</label>
+                </div>
+                <div class="wish-list" id="wish-list" aria-live="polite"></div>
+                <p class="privacy-hint"><span aria-hidden="true">✦</span> Handled gifts stay tucked away unless you choose to reveal them.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="cruise-section content-section" id="cruise" aria-labelledby="cruise-heading">
+      <section class="cruise-section content-section" id="cruise" aria-labelledby="cruise-heading" data-page="cruise">
         <div class="section-heading">
           <div>
             <p class="eyebrow">ALL ABOARD FOR ADVENTURE</p>
@@ -173,7 +185,7 @@
         </div>
       </section>
 
-      <section class="home-section content-section" id="at-home" aria-labelledby="home-heading">
+      <section class="home-section content-section" id="at-home" aria-labelledby="home-heading" data-page="at-home">
         <div class="section-heading">
           <div>
             <p class="eyebrow">GOOD THINGS HAPPEN AT HOME, TOO</p>
@@ -207,7 +219,7 @@
         </div>
       </section>
 
-      <section class="closing-banner" aria-label="Holiday greeting">
+      <section class="closing-banner" aria-label="Holiday greeting" data-page="home">
         <span class="closing-spark" aria-hidden="true">✳</span>
         <p>Here’s to being <em>together.</em></p>
         <span class="closing-subtitle">THE BEST PART OF THE HOLIDAYS IS US</span>

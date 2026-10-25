@@ -7,6 +7,18 @@ const STORAGE_KEYS = {
   cruiseDate: "christmas-together-cruise-date"
 };
 
+const REGISTRY_MEMBERS = [
+  { id: "mom", name: "Mom" },
+  { id: "dad", name: "Dad" },
+  { id: "tritan", name: "Tritan" },
+  { id: "athena", name: "Athena" },
+  { id: "paris", name: "Paris" },
+  { id: "taylor", name: "Taylor" },
+  { id: "alton", name: "Alton" },
+  { id: "apollo", name: "Apollo" },
+  { id: "rachel", name: "Rachel" }
+];
+
 let toastTimeout;
 
 const state = {
@@ -76,23 +88,73 @@ function commitList(key, property, entries) {
   renderAll();
 }
 
+function getSelectedMember() {
+  const match = window.location.hash.match(/^#registry\/([a-z0-9-]+)$/);
+  return match ? REGISTRY_MEMBERS.find((member) => member.id === match[1]) || null : null;
+}
+
+function getCurrentPage() {
+  const route = window.location.hash.slice(1).split("/")[0];
+  return ["registry", "cruise", "at-home"].includes(route) ? route : "home";
+}
+
+function renderPageRoute() {
+  const currentPage = getCurrentPage();
+  document.querySelectorAll("[data-page]").forEach((page) => {
+    page.hidden = page.dataset.page !== currentPage;
+  });
+  document.querySelectorAll(".main-nav a").forEach((link) => {
+    if (link.hash === `#${currentPage}`) {
+      link.setAttribute("aria-current", "page");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+}
+
+function renderRegistryMembers() {
+  const container = document.getElementById("registry-members");
+  container.innerHTML = REGISTRY_MEMBERS.map((member) => {
+    const count = state.wishes.filter((wish) => wish.name.trim().toLowerCase() === member.name.toLowerCase()).length;
+    return `<a class="registry-member-card" href="#registry/${member.id}">
+      <span class="registry-member-icon" aria-hidden="true">${escapeHtml(member.name.charAt(0))}</span>
+      <span class="registry-member-name">${escapeHtml(member.name)}</span>
+      <span class="registry-member-count">${count} ${count === 1 ? "wish" : "wishes"}</span>
+      <span class="registry-member-arrow" aria-hidden="true">↗</span>
+    </a>`;
+  }).join("");
+}
+
+function renderRegistryPage() {
+  const member = getSelectedMember();
+  document.getElementById("registry-members-view").hidden = Boolean(member);
+  document.getElementById("registry-person-view").hidden = !member;
+  if (!member) return;
+  document.getElementById("wish-name").value = member.name;
+  document.getElementById("wish-list-heading").textContent = `${member.name}’s wishes`;
+  renderWishes();
+}
+
 function renderWishes() {
   const list = document.getElementById("wish-list");
+  const member = getSelectedMember();
+  if (!member) return;
   const showHandled = document.getElementById("show-handled").checked;
-  const visible = state.wishes.filter((wish) => showHandled || !wish.handled);
-  document.getElementById("wish-count").textContent = `${state.wishes.length} ${state.wishes.length === 1 ? "wish" : "wishes"}`;
+  const memberWishes = state.wishes.filter((wish) => wish.name.trim().toLowerCase() === member.name.toLowerCase());
+  const visible = memberWishes.filter((wish) => showHandled || !wish.handled);
+  document.getElementById("wish-count").textContent = `${memberWishes.length} ${memberWishes.length === 1 ? "wish" : "wishes"}`;
 
   if (!visible.length) {
-    list.innerHTML = `<div class="empty-state">${state.wishes.length ? "No wishes to show. Handled gifts are tucked away." : "No wishes just yet. Add the first little hint."}</div>`;
+    list.innerHTML = `<div class="empty-state">${memberWishes.length ? "No wishes to show. Handled gifts are tucked away." : "No wishes just yet. Add the first little hint."}</div>`;
     return;
   }
 
   list.innerHTML = visible.map((wish) => {
     const storeLabel = wish.link ? (isStoreUrl(wish.link, "giftster.com") ? "GIFTSTER ↗" : "AMAZON ↗") : "";
     return `<article class="wish-item">
-      <span class="wish-avatar" aria-hidden="true">${escapeHtml(wish.name.trim().charAt(0).toUpperCase())}</span>
+      <span class="wish-avatar" aria-hidden="true">${escapeHtml(member.name.charAt(0).toUpperCase())}</span>
       <div class="wish-main">
-        <span class="wish-person">${escapeHtml(wish.name)}</span>
+        <span class="wish-person">${escapeHtml(member.name)}</span>
         <span class="wish-title">${escapeHtml(wish.title)}</span>
         ${wish.notes ? `<p class="wish-notes">${escapeHtml(wish.notes)}</p>` : ""}
       </div>
@@ -126,6 +188,9 @@ function renderPotluck() {
 }
 
 function renderAll() {
+  renderPageRoute();
+  renderRegistryMembers();
+  renderRegistryPage();
   renderWishes();
   renderRsvps();
   renderPotluck();
@@ -169,6 +234,7 @@ function setupWishForm() {
     };
     commitList(STORAGE_KEYS.wishes, "wishes", [...state.wishes, wish]);
     form.reset();
+    document.getElementById("wish-name").value = getSelectedMember().name;
     setMessage("wish-message", "Your wish is on the list.");
     window.setTimeout(() => setMessage("wish-message", ""), 3500);
   });
@@ -296,6 +362,11 @@ setupWishForm();
 setupRsvpForm();
 setupPotluckForm();
 setupCruiseDate();
+window.addEventListener("hashchange", () => {
+  renderPageRoute();
+  renderRegistryPage();
+  window.scrollTo(0, 0);
+});
 renderAll();
 updateCountdowns();
 window.setInterval(updateCountdowns, 60000);
